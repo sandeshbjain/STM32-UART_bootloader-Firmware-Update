@@ -6,3 +6,4 @@ firmware_update_applicaiton
 (void*)(*(volatile uint32_t*)(0X08060000+4))
 temp
 update_firmware_address
+sofar

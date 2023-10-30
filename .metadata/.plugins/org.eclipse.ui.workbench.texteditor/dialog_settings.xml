@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Bad"/>
+		<item key="selection" value="numPackets"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="numPackets"/>
 			<item value="Bad"/>
 			<item value="update_firmware_address"/>
 			<item value="080"/>
@@ -22,7 +23,6 @@
 			<item value="CRC_HandleTypeDef hcrc;"/>
 			<item value="extern"/>
 			<item value="huart2"/>
-			<item value="VECT_TAB_OFFSET"/>
 		</list>
 		<list key="replacehistory">
 			<item value="update_firmware_address"/>
@@ -30,8 +30,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1036"/>
-		<item key="DIALOG_Y_ORIGIN" value="350"/>
+		<item key="DIALOG_X_ORIGIN" value="1035"/>
+		<item key="DIALOG_Y_ORIGIN" value="260"/>
 		<item key="DIALOG_WIDTH" value="414"/>
 		<item key="DIALOG_HEIGHT" value="591"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|8.765218|0|WINDOWS|1|-14|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

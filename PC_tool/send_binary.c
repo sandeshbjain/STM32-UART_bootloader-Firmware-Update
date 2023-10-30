@@ -42,7 +42,8 @@ void sendFile(char* filename, int comport){
 	}
 	
 	char packet_buffer[PACKET_SIZE];
-	char start_buffer[] ="START";
+	//char start_buffer[] ="START";
+	char start_buffer[16];
 	char stop_buffer[] ="STOP";
 	char ack_buffer[3];
 	int bytesRead;
@@ -52,6 +53,12 @@ void sendFile(char* filename, int comport){
 		
 		delay_us(400000);
 		
+		// Calculate the number of packets and convert it to a string
+        fseek(file, 0, SEEK_END);
+		long fileSize = ftell(file);
+        int numPackets = (int)(fileSize / PACKET_SIZE);
+        snprintf(start_buffer, sizeof(start_buffer), "START%d", numPackets);
+		
 		if (RS232_SendBuf(comport, start_buffer, sizeof(start_buffer)) < 0) {
                 printf("*********Error in sending start bit. Exiting*********\n");
                 return;
@@ -60,7 +67,7 @@ void sendFile(char* filename, int comport){
 			printf("Start Message Sent \n");
 			delay_us(400000);
 		}	
-		
+		fseek(file, 0, SEEK_SET);		//fseek has set the file position pointer to last location of the file. Set it back to the starting location
 		while ((bytesRead = fread(packet_buffer, 1, PACKET_SIZE, file)) > 0) {
             // Send the packet to the STM32 microcontroller
             if (RS232_SendBuf(comport, packet_buffer, bytesRead) < 0) {
@@ -69,7 +76,7 @@ void sendFile(char* filename, int comport){
 			}
 			else{
 			printf("Sending Data packets \n");
-			delay_us(400000);
+			delay_us(40000);
 			
 			// After sending each packet, wait for an acknowledgment
 			int ackBytes = RS232_PollComport(comport, (unsigned char*)ack_buffer, sizeof(ack_buffer));

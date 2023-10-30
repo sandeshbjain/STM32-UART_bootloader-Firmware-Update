@@ -42,8 +42,10 @@ const uint8_t bootloader_version[2] = {version_0,version_1};
 GPIO_PinState status_of_GPIO = GPIO_PIN_SET;
 char pdata[1024];
 char receive_byte[3];
-char temp[6];
+char temp[16];
 uint32_t update_firmware_address = 0X08060000;
+int numPackets;
+int sofar = 0;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -130,19 +132,28 @@ int main(void)
   if(status_of_GPIO == GPIO_PIN_RESET){
 
 
-	  HAL_UART_Receive(&huart6, (uint8_t*)temp, (uint16_t)sizeof("START"), 15000);
+	  HAL_UART_Receive(&huart6, (uint8_t*)temp, (uint16_t)sizeof(temp), 15000);
+	  temp[sizeof(temp) - 1] = '\0';
 	  printf("Received data : %s \r \n", temp);
-	  if (strncmp((char *)temp, "START", 5) == 0){
-		  printf("*******Received Start Bit for Firmware Update****** \r \n");
 
-	  }
-	  else{
-		  printf("*******Bad data****** \r \n");
-		  printf("Received data : %s \r \n", temp);
-		  goto run_bootloader_while_loop;
+
+	  if (strncmp((char *)temp, "START", 5) == 0) {
+	      // "START" command received
+	      if (sscanf(temp, "START%d", &numPackets) == 1) {
+	          // numPackets now contains the number of packets received
+	          printf("Received Start Bit for Firmware Update. Number of Packets: %d\r\n", numPackets);
+
+	          // Now you can use the numPackets value to handle the firmware update process.
+	      } else {
+	          // Handle parsing error
+	          printf("Error parsing the number of packets.\r\n");
+	          goto run_bootloader_while_loop;
+	      }
 	  }
 
-	  while(1){
+	  for(int i=0;i<=numPackets;i++)
+	  {
+
 		  HAL_UART_Receive(&huart6, (uint8_t*)pdata, (uint16_t)sizeof(pdata), 15000);
 		  if (strstr((char*)pdata, "STOP") != NULL) {
 			  printf("Firmware Updated");
@@ -150,9 +161,28 @@ int main(void)
 		  }
 		  else{
 			  printf("Packet Received");
-			  Flash_Write_Data((uint32_t)(update_firmware_address), pdata, sizeof(pdata));
+			  /*Flash_Write_Data((uint32_t)(update_firmware_address), pdata, sizeof(pdata));
 			  update_firmware_address=update_firmware_address+1024;
+			  HAL_UART_Transmit(&huart6,(uint8_t *) "OK", sizeof("OK"), 15000);*/
+
+			  HAL_FLASH_Unlock();
+
+			  while(sofar<1024){
+				  if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_BYTE, update_firmware_address, pdata[sofar]) == HAL_OK)
+						 {
+							 update_firmware_address++;  // use StartPageAddress += 2 for half word and 8 for double word
+							 sofar++;
+						 }
+						 else
+						 {
+						   /* Error occurred while writing data in Flash memory*/
+							 return HAL_FLASH_GetError ();
+						 }
+			  }
+			  sofar = 0;
 			  HAL_UART_Transmit(&huart6,(uint8_t *) "OK", sizeof("OK"), 15000);
+			  HAL_FLASH_Lock();
+
 		  }
 	  }
 	  HAL_Delay(100);

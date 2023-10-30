@@ -1,0 +1,10 @@
+03:42:12 **** Incremental Build of configuration Debug for project Firmware_Update_Binary ****
+make -j16 all 
+arm-none-eabi-size   Firmware_Update_Binary.elf 
+   text	   data	    bss	    dec	    hex	filename
+  13008	    120	   1728	  14856	   3a08	Firmware_Update_Binary.elf
+Finished building: default.size.stdout
+ 
+
+03:42:12 Build Finished. 0 errors, 0 warnings. (took 174ms)
+

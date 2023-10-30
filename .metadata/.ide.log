@@ -1,0 +1,29 @@
+2023-10-29 00:39:22,807 [INFO] Activator:176 - 
+
+
+2023-10-29 00:39:22,811 [INFO] Activator:177 - !SESSION log4j initialized
+2023-10-29 00:39:28,545 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2023-10-29 00:39:51,176 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2023-10-29 00:39:51,176 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Defaulting to no-operation (NOP) logger implementation
+2023-10-29 00:39:51,178 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2023-10-29 03:52:02,973 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] Exception in thread "SWV client thread" java.lang.NullPointerException
+2023-10-29 03:52:02,977 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.ide.mcu.debug.swv.core.SWVPlugin.debugTrace(SWVPlugin.java:85)
+2023-10-29 03:52:02,978 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.ide.mcu.debug.swv.core.SWVClient.TRACE(SWVClient.java:768)
+2023-10-29 03:52:02,980 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.ide.mcu.debug.swv.core.SWVClient.createProtocolPacket(SWVClient.java:472)
+2023-10-29 03:52:02,982 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.ide.mcu.debug.swv.core.SWVClient.run(SWVClient.java:370)
+2023-10-29 04:03:07,086 [INFO] Activator:176 - 
+
+
+2023-10-29 04:03:07,089 [INFO] Activator:177 - !SESSION log4j initialized
+2023-10-29 04:03:12,715 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2023-10-29 04:03:35,688 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2023-10-29 04:03:35,689 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Defaulting to no-operation (NOP) logger implementation
+2023-10-29 04:03:35,690 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2023-10-29 20:20:54,077 [INFO] Activator:176 - 
+
+
+2023-10-29 20:20:54,078 [INFO] Activator:177 - !SESSION log4j initialized
+2023-10-29 20:20:59,362 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2023-10-29 20:21:26,920 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2023-10-29 20:21:26,921 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Defaulting to no-operation (NOP) logger implementation
+2023-10-29 20:21:26,922 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
